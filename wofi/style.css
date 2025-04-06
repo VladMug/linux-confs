@@ -1,0 +1,40 @@
+
+#text {
+	color: white;
+	font-size:32px;
+	font-weight: bold;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#text:selected {
+	color: rgb(33,33,33);
+}
+
+expander > list{
+	background-color:rgba(33,33,33,0.9);	
+}
+
+#window {
+	background-color:rgba(33,33,33,0.8);
+}
+
+#input {
+	background-color:rgba(33,33,33,1);
+	color: white;
+	font-size:32px;
+	font-weight: bold;
+	padding: 5px;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+#entry {
+	border: none;
+}
+
+#entry:selected {
+	background-image: linear-gradient(to right, rgb(192,202,245), rgb(245,196,255));
+	border: none;
+}
