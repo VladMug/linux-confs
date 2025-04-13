@@ -15,16 +15,21 @@ vim.opt.rtp:prepend(lazypath)
 local opts = {}
 local plugins = {
 
+   --bufferline
+  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+
   --catpuccin
   { "catppuccin/nvim", name = "catppuccin", priotity = 1000 }, 
 
-  --nvim-telescope
+  --comment
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.6',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+      'numToStr/Comment.nvim',
+      opts = {
+          -- add any options here
+      }
   },
 
---telescope-todo
+  --folke-telescope-todo
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -35,29 +40,46 @@ local plugins = {
     }
   },
 
-  --nvim-treesitter
-  { "nvim-treesitter/nvim-treesitter", build= ":TSUpdate" },
-
-  --vim-airline
-  { "vim-airline/vim-airline" },
-  { "vim-airline/vim-airline-themes" },
+  --folke-which-key
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
 
   --nvim-tree
   { "nvim-tree/nvim-tree.lua" },
 
-  --dashboard
+  --nvim-telescope
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.6',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  --nvim-treesitter
+  { "nvim-treesitter/nvim-treesitter", build= ":TSUpdate" },
+ 
+  --nvim-transparency
+  { "xiyaowong/transparent.nvim" },
+
+  --nvim-dashboard
   {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
       require('dashboard').setup {
-
         --config
-
       }
     end,
     dependencies = {{'nvim-tree/nvim-web-devicons'}},
   },
+
+  --vim-airline
+  { "vim-airline/vim-airline" },
+  { "vim-airline/vim-airline-themes" },
 }
 
 require("lazy").setup(plugins, opts)
