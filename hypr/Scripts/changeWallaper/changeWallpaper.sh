@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# Конфигурация
+WALLPAPER_DIR="$HOME/.config/hypr/Wallpapers/purple"
+CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
+MONITOR1="DP-1"
+MONITOR2="DP-3"
+
+# Проверка директории
+if [ ! -d "$WALLPAPER_DIR" ]; then
+    echo "Ошибка: Директория $WALLPAPER_DIR не существует!"
+    exit 1
+fi
+
+# Получаем список файлов (исправленная версия)
+files=()
+while IFS= read -r -d $'\0' file; do
+    files+=("$file")
+done < <(find "$WALLPAPER_DIR" -maxdepth 1 -type f \( \
+    -iname "*.jpg" -o \
+    -iname "*.jpeg" -o \
+    -iname "*.png" -o \
+    -iname "*.webp" \) -print0 2>/dev/null | sort -z)
+
+# Проверка наличия файлов
+if [ ${#files[@]} -eq 0 ]; then
+    echo "Ошибка: В директории $WALLPAPER_DIR нет изображений!"
+    exit 1
+fi
+
+# Выводим список с номерами
+echo "Доступные обои:"
+for i in "${!files[@]}"; do
+    printf "%3d) %s\n" $((i+1)) "$(basename "${files[i]}")"
+done
+
+select_wallpaper() {
+    local monitor=$1
+
+    # Выбор для первого монитора
+    echo ""
+    echo "Выберите обои для $monitor:"
+
+    while true; do
+        read -p "Введите номер обоев (1-${#files[@]}): " num
+        
+        if [[ ! "$num" =~ ^[0-9]+$ ]]; then
+            echo "Ошибка: Введите число!"
+            continue
+        fi
+        
+        if (( num < 1 || num > ${#files[@]} )); then
+            echo "Ошибка: Номер должен быть от 1 до ${#files[@]}!"
+            continue
+        fi
+        
+        echo "wallpaper = $monitor,${files[num-1]}" >> "$CONFIG_FILE"
+        break
+    done
+}
+
+# Очищаем конфиг и добавляем preload
+echo "" > "$CONFIG_FILE"
+for img in "${files[@]}"; do
+    echo "preload = $img" >> "$CONFIG_FILE"
+done
+
+# Выбор для каждого монитора
+select_wallpaper "$MONITOR1"
+select_wallpaper "$MONITOR2"
+
+# Перезапускаем hyprpaper
+killall hyprpaper && hyprpaper &
+
+echo "Обои успешно изменены!"
