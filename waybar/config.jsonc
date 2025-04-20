@@ -7,9 +7,9 @@
     "height": 0,
 
     "margin-top": 0,
-    "margin-right": 8,
+    "margin-right": 0,
     "margin-bottom": 0,
-    "margin-left": 8,
+    "margin-left": 0,
 
     "modules-right": [
 		"hyprland/language", "custom/sep",
@@ -47,7 +47,9 @@
 
     "clock": {
         "format": "{:%I:%M %p - %a, %d %b %Y}",
-        "tooltip": false
+        "tooltip": true,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+
     },
 
     "cpu": {
@@ -105,7 +107,8 @@
     },
     "custom/mpris": {
     	"exec": "sh ~/.config/waybar/Scripts/player.sh",
-    	"interval": 1,
+    	// "interval": 1,
+	// "signal": 1,
     	"on-click": "playerctl play-pause",
 	"on-scroll-up": "playerctl next",
 	"on-scroll-down": "playerctl previous",

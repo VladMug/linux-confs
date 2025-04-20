@@ -12,15 +12,12 @@
 }
 
 window#waybar {
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0);
 	margin-top: 4px;
 }
 
 window#waybar > * {
 	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 8px;
-	padding-right: 8px
 }
 .modules-left,
 .modules-center, 
