@@ -118,7 +118,7 @@
     "custom/pmenu": {
   	"format": "⏻",
 	"tooltip": "Power Menu",
-	"on-click": "~/.config/rofi/power_menu.sh",
+	"on-click": "kitty --hold sh ~/.config/waybar/Scripts/power.sh",
 	"interval": 0
 	}
 

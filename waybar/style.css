@@ -1,9 +1,5 @@
-/* COLORS */
-/*
-   foreground #1f1c27 31, 28, 39
-   background #ebbadf 182, 160, 255
 
-*/
+@import "../../.cache/wal/colors-waybar.css";
 
 * {
 	border: none;
@@ -14,6 +10,7 @@
 window#waybar {
 	background-color: rgba(0, 0, 0, 0.1);
 	margin-top: 4px;
+	border-radius: 0px
 }
 
 window#waybar > * {
@@ -25,8 +22,9 @@ window#waybar > * {
 .modules-left,
 .modules-center, 
 .modules-right {
-	background-color: /* #1f1c27 */ rgba(31, 28, 39, 0.8);
-	color: #ebbadf;
+	/* background-color: rgba(31, 28, 39, 0.8); */
+	background-color: @background;
+	color: @color8;
 }
 
 #custom-sep {
@@ -66,6 +64,7 @@ window#waybar > * {
 	padding-right: 6px;
 }
 
+#clock:hover,
 #pulseaudio:hover,
 #mpris:hover,
 #custom-mpris:hover, 
@@ -82,7 +81,7 @@ window#waybar > * {
 
 #workspaces button {
 	padding: 0px 10px;
-	color: #ebbadf;
+	color: @color8;
 	transition: all .2s ease;
 /*	margin: 0 10px; */
 }
@@ -91,11 +90,11 @@ window#waybar > * {
 	margin: 0 20px;
 	padding: 0px 20px;
 	color: #1f1c27;
-	background-color: #ebbadf;
+	background-color: @color8;
 	transition: all .2s ease;
 }
 
 #workspaces button.active:hover {
 	background-color: transparent; /* #a5a0aa; */
-	color: #ebbadf;
+	color: @color8;
 }

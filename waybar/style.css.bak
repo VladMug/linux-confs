@@ -12,12 +12,16 @@
 }
 
 window#waybar {
-	background-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.1);
 	margin-top: 4px;
+	border-radius: 0px
 }
 
 window#waybar > * {
 	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 8px;
+	padding-right: 8px
 }
 .modules-left,
 .modules-center, 
@@ -63,6 +67,7 @@ window#waybar > * {
 	padding-right: 6px;
 }
 
+#clock:hover,
 #pulseaudio:hover,
 #mpris:hover,
 #custom-mpris:hover, 
